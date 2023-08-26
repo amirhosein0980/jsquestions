@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+</head>
+
+<body>
+    <script>
+        function calculate(a) {
+            return function (b) {
+                return function (op) {
+                    if (op === '+') {
+                        return a + b;
+                    } else if (op === '-') {
+                        return a - b;
+                    } else if (op === '*') {
+                        return a * b;
+                    }
+                }
+            }
+        }
+        console.log(calculate(5)(1)('+'));
+        console.log(calculate(1)(4)('-'));
+        console.log(calculate(2)(9)('*'));
+
+        function sumFromTo(a, b) {
+            if (a === b) {
+                return a;
+            } else if (a < b) {
+                return a + sumFromTo(a + 1, b);
+            } else {
+                return b + sumFromTo(a, b + 1);
+            }
+        }
+        console.log(sumFromTo(1, 100));
+        console.log(sumFromTo(1, 5));
+        console.log(sumFromTo(-5, 5));
+
+        function callOnceAfter(func, delay) {
+            let timer;
+            return function () {
+                clearTimeout(timer);
+                timer = setTimeout(func, delay * 1000);
+            }
+        }
+        function logName() { console.log("ali") }
+        const lazyLogName = callOnceAfter(logName, 2)
+        lazyLogName()
+
+        function limitCallForEveryDuration(func, delay) {
+            let lastCall = 0;
+            return function () {
+                let now = Date.now();
+                if (now - lastCall >= delay * 1000) {
+                    func();
+                    lastCall = now;
+                }
+            }
+        }
+        function logName() { console.log("ali") }
+        const limitedLogName = limitCallForEveryDuration(logName, 0.5)
+
+        for (let i = 0; i < 10000; i++) {
+            limitedLogName()
+        }
+
+        function rememberOrDo(func) {
+            const cache = {};
+            return function (...args) {
+                const key = JSON.stringify(args);
+                if (cache.hasOwnProperty(key)) {
+                    return cache[key];
+                } else {
+                    const result = func(...args);
+                    cache[key] = result;
+                    return result;
+                }
+            }
+        }
+        function slowSum(a, b) { return a + b }
+        const fastSum = rememberOrDo(slowSum)
+
+        fastSum(2, 3)
+        fastSum(5, 6)
+        fastSum(2, 3)
+        fastSum(2, 3)
+
+        function makeCancelableTimeout(func, delay) {
+            const timer = setTimeout(func, delay);
+            return function () {
+                clearTimeout(timer);
+            }
+        }
+        function log() { console.log("hadi") }
+        const cancel = makeCancelableTimeout(log, 2000)
+        cancel()
+    </script>
+</body>
+
+</html>
