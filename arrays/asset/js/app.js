@@ -10162,3 +10162,15 @@ function filterWithFor(array, callback) {
     return result;
 }
 console.log(filterWithFor())
+
+function averageBalance(users) {
+    let sum = 0;
+    let count = 0;
+    for (const user of users) {
+        if (user.country === 'Iran' && parseInt(user.birthDate.split('/')[1]) > 15) {
+            sum += user.balance;
+            count++;
+        }
+    }
+    return sum / count;
+}
