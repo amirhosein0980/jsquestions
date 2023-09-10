@@ -10009,100 +10009,100 @@ function groupByCountry(users) {
     }
     return result;
 }
-groupByCountry(users);
+console.log(groupByCountry(users));
 
-function groupByGender(users) {
-    const result = {};
-    for (const user2 of users) {
-        if (!result.hasOwnProperty(user2.gender)) {
-            result[user2.gender] = [];
-        }
-        result[user2.gender].push(user2);
-    }
-    return result;
-}
-groupByGender(users);
+// function groupByGender(users) {
+//     const result = {};
+//     for (const user2 of users) {
+//         if (!result.hasOwnProperty(user2.gender)) {
+//             result[user2.gender] = [];
+//         }
+//         result[user2.gender].push(user2);
+//     }
+//     return result;
+// }
+// console.log(groupByGender(users));
 
-function groupBy(users, key) {
-    const result = {};
-    for (const user3 of users) {
-        if (!result.hasOwnProperty(user3[key])) {
-            result[user3[key]] = [];
-        }
-        result[user3[key]].push(user3);
-    }
-    return result;
-}
-groupBy(users, 'birthDate');
+// function groupBy(users, key) {
+//     const result = {};
+//     for (const user3 of users) {
+//         if (!result.hasOwnProperty(user3[key])) {
+//             result[user3[key]] = [];
+//         }
+//         result[user3[key]].push(user3);
+//     }
+//     return result;
+// }
+// groupBy(users, 'birthDate');
 
-function groupByWithKeyGenerator(users, keyGenerator) {
-    const result = {};
-    for (const user of users) {
-        const key2 = keyGenerator(user);
-        if (!result.hasOwnProperty(key2)) {
-            result[key2] = [];
-        }
-        result[key2].push(user);
-    }
-    return result;
-}
-const getAge = (user) => 2023 - (new Date(user.birthDate)).getFullYear();
-groupByWithKeyGenerator(users, getAge);
+// function groupByWithKeyGenerator(users, keyGenerator) {
+//     const result = {};
+//     for (const user of users) {
+//         const key2 = keyGenerator(user);
+//         if (!result.hasOwnProperty(key2)) {
+//             result[key2] = [];
+//         }
+//         result[key2].push(user);
+//     }
+//     return result;
+// }
+// const getAge = (user) => 2023 - (new Date(user.birthDate)).getFullYear();
+// groupByWithKeyGenerator(users, getAge);
 
-function objectMap(obj, func) {
-    const result = {};
-    for (const key3 in obj) {
-        if (obj.hasOwnProperty(key3)) {
-            result[key3] = func(key3, obj[key3]);
-        }
-    }
-    return result;
-}
+// function objectMap(obj, func) {
+//     const result = {};
+//     for (const key3 in obj) {
+//         if (obj.hasOwnProperty(key3)) {
+//             result[key3] = func(key3, obj[key3]);
+//         }
+//     }
+//     return result;
+// }
 
-let inputObj1 = {
-  A:  10,
-  B: 20
-};
+// let inputObj1 = {
+//   A:  10,
+//   B: 20
+// };
 
-function multiplyByTwo(key4, value) { return key4 + value * 2; }
+// function multiplyByTwo(key4, value) { return key4 + value * 2; }
 
-objectMap(inputObj1, multiplyByTwo);
+// objectMap(inputObj1, multiplyByTwo);
 
-function objectReduce(obj, reducer, initialValue) {
-    let result = initialValue;
-    for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            result = reducer(result, obj[key], key);
-        }
-    }
-    return result;
-}
-let inputObj2 = {
-    A: 10,
-    B: 20
-};
+// function objectReduce(obj, reducer, initialValue) {
+//     let result = initialValue;
+//     for (const key in obj) {
+//         if (obj.hasOwnProperty(key)) {
+//             result = reducer(result, obj[key], key);
+//         }
+//     }
+//     return result;
+// }
+// let inputObj2 = {
+//     A: 10,
+//     B: 20
+// };
 
-function sumReducer(accumulator, value) { return accumulator + value; }
+// function sumReducer(accumulator, value) { return accumulator + value; }
 
-objectReduce(inputObj2, sumReducer, 0); 
+// objectReduce(inputObj2, sumReducer, 0); 
 
-function deepLog(obj) {
-    for (const key in obj) {
-        if (typeof obj[key] === 'object') {
-            deepLog(obj[key]);
-        } else {
-            console.log(obj[key]);
-        }
-    }
-}
-let inputObj3 = {
-    foo: 'bar',
-    baz: {
-        a: 'b',
-        c: 'd',
-        e: {},
-        f: { g: 'h' }
-    }
-};
+// function deepLog(obj) {
+//     for (const key in obj) {
+//         if (typeof obj[key] === 'object') {
+//             deepLog(obj[key]);
+//         } else {
+//             console.log(obj[key]);
+//         }
+//     }
+// }
+// let inputObj3 = {
+//     foo: 'bar',
+//     baz: {
+//         a: 'b',
+//         c: 'd',
+//         e: {},
+//         f: { g: 'h' }
+//     }
+// };
 
-deepLog(inputObj3);  
+// deepLog(inputObj3);  
